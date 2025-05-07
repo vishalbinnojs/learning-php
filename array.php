@@ -16,7 +16,7 @@ for($i=0;$i<count($arr);$i++){
 }
 
 // Foreach loop
-$users =['anil','payal','sam','bruce','peter'];
+$users =['anil','payal','sam','bruce','peter','akash'];
 
 foreach($users as $x){
     // if($x=="bruce"){
