@@ -1,0 +1,45 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling Form</title>
+ </head>
+ <body>
+    <form action="./form.php" method="post">
+        <input type="text" name="user" placeholder="enter user name">
+        <br>
+        <br>
+        <input type="email" name="email" placeholder="enter user email">
+        <br><br>
+         <input type="password" name="password" placeholder="enter user password">
+         <br><br>
+         <input type="checkbox" name="skills[]" value="php"><span>PHP</span>
+         <br>
+         <input type="checkbox" name="skills[]" value="javascript"><span>JAVASCRIPT</span>
+         <br>
+         <input type="checkbox" name="skills[]" value="html"><span>HTML</span>
+         <br>
+         <input type="checkbox" name="skills[]" value="react"><span>REACT</span>
+         <br><br>
+         <input type="radio" name="gender" value="male"><span>Male</span>
+         <br>
+         <br> 
+         <input type="radio" name="gender" value="female"><span>Female</span>
+         <br><br>
+         <select name="city" >
+            <option >Select city</option>
+            <option value="kangra">Kangra</option>
+            <option value="palampur">Palampur</option>
+            <option value="baijnath">Baijnath</option>
+         </select>
+         <br><br>
+         <textarea name="bio" ></textarea>
+         <button type="submit">SignUp</button>
+         <hr>
+         <h6>Progress bar using only html.</h6>
+         <progress value="30" max="100"></progress>
+    </form>
+
+ </body>
+ </html>
