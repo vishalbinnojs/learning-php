@@ -22,12 +22,12 @@
       Regular physical activity strengthens your heart and lungs, improves blood circulation, and lowers the risk of heart disease, stroke, and high blood pressure.
       <br><br>
       Muscle and Bone Strength:
-Exercise helps build and maintain strong muscles and bones, reducing the risk of osteoporosis and fractures. 
-<br><br>
-Weight Management:
-Regular physical activity can help you maintain a healthy weight by burning calories and increasing metabolism. <br><br>
-Mental Health:
-Exercise can reduce stress, improve mood, and even help alleviate symptoms of depression and anxiety
+      Exercise helps build and maintain strong muscles and bones, reducing the risk of osteoporosis and fractures. 
+      <br><br>
+      Weight Management:
+      Regular physical activity can help you maintain a healthy weight by burning calories and increasing metabolism. <br><br>
+      Mental Health:
+      Exercise can reduce stress, improve mood, and even help alleviate symptoms of depression and anxiety
       </p>
 
       <img src="./imgs/fitness.jpg" alt="fitness" >
