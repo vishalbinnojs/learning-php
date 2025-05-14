@@ -14,9 +14,8 @@ if(isset($_POST['search'])){
     $result = $students->fetchAll(PDO::FETCH_ASSOC);
     // print_r($result);  // prints data in array
 
-}
-echo "<table border=1>";
-echo "<tr>";
+    echo "<table border=1>";
+    echo "<tr>";
 // headings loop
 foreach(array_keys($result[0]) as $heading){
     echo "<th> $heading </th>";
@@ -29,6 +28,7 @@ foreach($result as $student){
         echo "<td>".$data."</td>";
     }
     echo "</tr>";
-    }
-    echo "</table>";
+}
+echo "</table>";
+}
 ?>

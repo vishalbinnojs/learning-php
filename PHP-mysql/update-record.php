@@ -5,7 +5,7 @@ include_once('./config.php');
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $getStudent = $conn->prepare("SELECT * FROM students WHERE id = :id");
-    $getStudent->bindParam(':id', $id);   // bindParam(): Prevent SQL injection attack
+    $getStudent->bindParam(':id', $id);   // binding with name placeholder
     $getStudent->execute();
     $student = $getStudent->fetch(PDO::FETCH_ASSOC);
 
@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     exit();
 }
 ?>
-<form action="" method="post">
+<form action="" method="post" onsubmit="alert('Are you sure!')">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($name); ?>"><br><br>
     <label for="course">Course:</label><br>
@@ -45,7 +45,7 @@ if (isset($_POST['update'])) {
     $batch = $_POST['batch'];
     $city = $_POST['city'];
     $year = $_POST['year'];
-
+// setting up a query
     $updateStudent = $conn->prepare("UPDATE students SET
         name = :name,
         course = :course,
@@ -63,6 +63,7 @@ if (isset($_POST['update'])) {
     $updateStudent->bindParam(':id', $id);
 
     if ($updateStudent->execute()) {
+      
         header('location:delete-record.php');
         exit();
     } else {

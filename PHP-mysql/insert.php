@@ -25,7 +25,6 @@
 
 
 <?php
-// print_r($_POST);
 if(isset($_POST['name'])){
     $name = $_POST['name'];
     $course = $_POST['course'];
@@ -33,18 +32,20 @@ if(isset($_POST['name'])){
     $city = $_POST['city'];
     $year = $_POST['year'];
 
-include_once("./config.php");
-$student = $conn->prepare("INSERT INTO `students`(`id`,`name`,`course`,`batch`,`city`,`year`) 
-VALUES (NULL,'$name','$course','$batch','$city','$year')");
-$result = $student->execute();
-if($result){
-    echo "Data inserted.";
-}else{
-    echo "Insertion failed.";
+    include_once("./config.php");
+
+    // The prepare() method sets up the SQL query with ? placeholders.
+    $student = $conn->prepare("INSERT INTO `students`(`id`,`name`,`course`,`batch`,`city`,`year`) 
+    VALUES (NULL, ?, ?, ?, ?, ?)");
+    
+    // The actual values are provided when execute() is called:
+    $result = $student->execute([$name, $course, $batch, $city, $year]);
+    // The values in the array ([$name, $course, $batch, $city, $year]) replace the ? placeholders in order.
+
+    if($result){
+        echo "Data inserted.";
+    }else{
+        echo "Insertion failed.";
+    }
 }
-
-}
-
-
-
 ?>
