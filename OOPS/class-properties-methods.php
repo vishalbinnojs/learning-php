@@ -1,5 +1,6 @@
 <?php
 echo "<h1>Properties and Methods in class.</h1>";
+
 // public,protected, private : access modifiers
 
 class Properties{
@@ -35,13 +36,17 @@ echo "<br>";
 // echo "<br>";
 echo $firstObject-> publicMethod();
 echo "<br> public property got changed.";
-echo $firstObject->publicProperty;  
+echo $firstObject->publicProperty;
+
+
+echo "<hr>";
 ?>
 
 
 
 
 <?php
+echo "<h2>Access Modifiers in PHP.</h2>";
 // access modifiers in Classes
 // Understanding public, private, and protected in PHP Classes
 // These are access modifiers that control the visibility and accessibility of class properties and methods. Here's the difference:

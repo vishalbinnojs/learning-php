@@ -21,7 +21,7 @@ echo "<h1> Constructor in PHP</h1>";
 
 class ConstructorDemo{
    public $name;
-   function __construct(){   
+   function __construct(){   // we can create only one constructor of one class.
        $this->name = "Vishwas";
     }
     function setName(){
