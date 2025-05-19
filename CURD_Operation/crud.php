@@ -14,14 +14,36 @@ if(!$conn){
 }
 
   if(isset($_POST['add'])){
+
+    if(isset($_POST['snoEdit'])) {
+        // update the record.
+        $snoEdit = $_POST['snoEdit'];
+        $title = $_POST['titleEdit'];
+        $description = $_POST['descEdit'];
+        $sql = $conn->prepare("UPDATE `notes` SET  `title`=?, `description`=?, `tstamp`=current_timestamp() where `s.no`=?");
+        $sql->bind_Param("ssi",$title,$description,$snoEdit);  // ss means two strings
+        $sql->execute();
+       // update message
+        if($sql->affected_rows > 0) {
+            echo "Record updated";
+        }
+        exit();
+    
+
+    }else{
+
+      
         $title = $_POST['title'];  // user input sanitization
         $description = $_POST['desc']; // user input sanitization
+
+        //sql query to be executed 
         $sql = $conn->prepare("INSERT INTO `notes` (`s.no`, `title`, `description`, `tstamp`) VALUES (NULL, ?, ?, current_timestamp())");
         $sql->bind_Param("ss",$title,$description);  // ss means two strings
         $sql->execute();
         if($sql){
           $insert = true;
         }
+        } 
         
     } 
 
@@ -39,17 +61,11 @@ if(!$conn){
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <title>E-Notes App</title>
-    <script>
-
-      
-    </script>
-
-    
-
+  
 </head>
 
 <body>
-
+    
 <!-- Edit modal -->
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
  Edit Modal    
@@ -60,12 +76,26 @@ if(!$conn){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fs-5" id="editModalLabel">Modal title</h5  >
+        <h5 class="modal-title fs-5" id="editModalLabel">Edit Note</h5  >
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
+        <form action="/learning-php/CURD_Operation/crud.php" method="post">
+            <input type="hidden" name="snoEdit" id="snoEdit">
+            <div class="form-group mb-3">
+                <label for="notetitle" class="form-label">Note Title</label>
+                <input type="text" name="titleEdit" id="titleEdit" class="form-control"  aria-describedby="noteEntry" />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="desc">Note Description</label>
+                <textarea class="form-control" name="descEdit" id="descEdit" class="desc" style="height: 100px"></textarea>
+            </div>
+            <button type="submit" name="add" class="btn btn-primary my-3">
+                Update Note
+            </button>
+        </form>
+      </div> 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
@@ -154,7 +184,7 @@ if(!$conn){
       <th >".$sno."</th>
       <td >".$row['title']."</td>
       <td >".$row['description']."</td>
-      <td ><a href='/del'>Delete</a> <a class='edit' href='/edit'>Edit</a></td>
+      <td > <button class= 'edit btn btn-sm btn-primary' id=".$row['s.no'].">Edit</button> <a style='text-decoration:none;' href='/del'>Delete</a> </td>
       </tr>";
     }
       
@@ -165,10 +195,10 @@ if(!$conn){
         </table>
     </div>
 <hr> 
-<script>
+<!-- <script>
     let table = new DataTable('#myTable');
  
-    </script>
+    </script> -->
  
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
@@ -187,7 +217,26 @@ if(!$conn){
     $(document).ready(function() {
         $('#myTable').DataTable();
     });
+    
 </script>
+  <script>
+  edits = document.getElementsByClassName("edit");
+ Array.from(edits).forEach((element)=>{
+    element.addEventListener("click", (e)=>{
+        console.log("edit");
+        tr = e.target.parentNode.parentNode;
+        title = tr.getElementsByTagName("td")[0].innerText;
+        description = tr.getElementsByTagName("td")[1].innerText;
+        console.log(title,description);
+        titleEdit.value = title;
+        descEdit.value = description;
+        snoEdit.value = e.target.id;
+        console.log(e.target.id);
+        $('#editModal').modal('toggle');
+    })
+ })
+      
+    </script>
 </body>
 
 </html>
